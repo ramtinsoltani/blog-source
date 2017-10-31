@@ -1,9 +1,12 @@
 {
   "name": "static-blog",
   "version": "0.0.0",
-  "description": "",
-  "author": "Ramtin Soltani",
+  "description": "The source files of blog.ramt.in blog",
+  "author": "Ramtin Soltani <ramtinsoltani93@gmail.com> (http://ramt.in)",
   "license": "ISC",
+  "scripts": {
+    "server": "node staging/server.js"
+  },
   "devDependencies": {
     "autoprefixer": "^7.1.6",
     "cssnano": "^3.10.0",
