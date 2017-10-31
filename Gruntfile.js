@@ -74,7 +74,8 @@ module.exports = function(grunt) {
       prod: {
         files: [
           {expand: true, cwd: 'source', src: './assets/images/**', dest: 'build/'},
-          {expand: true, cwd: 'source', src: './assets/lib/3rd/**', dest: 'build/'}
+          {expand: true, cwd: 'source', src: './assets/lib/3rd/**', dest: 'build/'},
+          {src: 'source/CNAME', dest: 'build/CNAME'}
         ]
       }
     },
