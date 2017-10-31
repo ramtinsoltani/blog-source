@@ -1,0 +1,300 @@
+@import 'common';
+
+// Disable link underline of the following
+a {
+
+  &.post,
+  &.project-button,
+  .top-bar > &,
+  .nav-bar > & {
+
+    text-decoration: none !important;
+
+  }
+
+}
+
+// Disable header text margin
+h1,
+header.h1 {
+
+  margin: 0px !important;
+
+}
+
+.header-cover {
+
+  @include square(100%);
+  @include flex(column);
+  background: color-gradient-green-transparent(.5);
+
+}
+
+.blog {
+
+  &-logo-large {
+
+    @include square(0px);
+    @include _transition(width, height);
+    background-size: contain;
+
+  }
+
+  &-description {
+
+    color: $color-light;
+    margin-top: 20px;
+    text-align: center;
+    max-width: 300px;
+
+  }
+
+}
+
+section.block {
+
+  width: 100%;
+  min-height: 400px;
+  @include flex();
+  @include vertical-padding(50px);
+
+  &.vertical { @include flex(column, null, null); }
+
+  &.gradient { background: $color-gradient-green; }
+
+}
+
+.author {
+
+  &-avatar {
+
+    background-image: $url-author-avatar;
+    background-size: contain;
+
+    &-border {
+
+      background: $color-gradient-green;
+      @include flex();
+
+    }
+
+    // Common
+    &,
+    &-border {
+
+      @include square(0px);
+      @include _transition(width, height);
+      border-radius: 50%;
+
+    }
+
+  }
+
+  &-info {
+
+    @include flex(column, null, null);
+    @include _transition(opacity);
+    opacity: 0;
+    margin-left: 50px;
+
+  }
+
+  &-bio {
+
+    color: $color-light-gray;
+    max-width: 650px;
+
+  }
+
+}
+
+.project {
+
+  background-color: $color-light;
+  @include flex(column);
+  transition: width       .15s      $_ttype,
+              height      .15s      $_ttype,
+              opacity     $_ttime   $_ttype,
+              font-size   .15s      $_ttype,
+              box-shadow  .15s      $_ttype;
+
+  &s-container {
+
+    @include flex();
+    max-width: 1000px;
+    margin-top: 50px;
+
+    > .left,
+    > .right {
+
+      width: 350px;
+      height: 400px;
+      z-index: 1;
+      opacity: 0;
+      font-size: $font-size-project-zoom-out;
+
+    }
+    > .center {
+
+      width: 400px;
+      height: 450px;
+      box-shadow: $shadow-light;
+      z-index: 2;
+      @include horizontal-margin(-50px);
+      opacity: 0;
+      font-size: $font-size-project-zoom-in;
+
+    }
+
+    > .left.round { border-radius: 20px 0px 0px 20px; }
+    > .right.round { border-radius: 0px 20px 20px 0px; }
+    > .center.round { border-radius: 20px; }
+
+    > .project:hover {
+
+      z-index: 3;
+      width: 400px;
+      height: 450px;
+      font-size: $font-size-project-zoom-in;
+      box-shadow: $shadow-rough;
+
+    }
+
+  }
+
+  &-info {
+
+    width: 100%;
+    @include flex(column, null, null);
+    flex-grow: 1;
+
+  }
+
+  &-cover {
+
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    flex-basis: 50%;
+    flex-grow: 1;
+
+  }
+
+  &-title {
+
+    font-weight: bold;
+    font-size: $font-size-project-title;
+    padding: 10px 20px 10px 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+
+  }
+
+  &-short-desc {
+
+    @include horizontal-padding(20px);
+    flex-grow: 1;
+    color: $color-light-gray;
+
+  }
+
+  &-button {
+
+    padding: 20px;
+    text-align: center;
+    color: $color-green;
+    background-color: $color-light;
+    @include _transition(background-color);
+
+    &:hover { background-color: $color-button-gray; }
+
+  }
+
+}
+
+.technolog {
+
+  &ies {
+
+    @include flex();
+    max-width: 1000px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+
+  }
+
+  &y {
+
+    @include square(100%);
+    @include _transition(opacity);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    &-wrapper {
+
+      @include square(150px);
+      @include flex(null);
+      @include _transition(opacity);
+      margin: 10px;
+      opacity: 0;
+
+      &:hover { opacity: 1 !important; }
+
+    }
+
+  }
+
+}
+
+.post {
+
+  @include square(400px);
+  @include flex(column, stretch, flex-end);
+  @include _transition(opacity, box-shadow);
+  margin: 10px;
+  opacity: 0;
+  background-color: $color-light;
+  background-position: center;
+  background-size: cover;
+  box-shadow: $shadow-light;
+
+  &:hover {
+
+    box-shadow: $shadow-rough;
+
+    .post-title,
+    .post-details {
+
+      opacity: 1;
+
+    }
+
+  }
+
+  &s-container {
+
+    margin-top: 40px;
+    @include flex();
+    flex-wrap: wrap;
+    max-width: 1000px;
+
+  }
+
+  > .post-title,
+  > .post-details {
+
+    padding: 10px 20px 10px 20px;
+    color: $color-light;
+    @include _transition(opacity);
+    opacity: 0;
+    background: color-gradient-green-transparent(.75, 45deg);
+
+  }
+
+  > .post-title { font-size: $font-size-project-title; }
+  > .post-details { font-size: $font-size-button; }
+
+}

@@ -1,0 +1,115 @@
+// All the functions and mixins live in this file
+// This is a partial file and should only be imported in common
+
+@function color-gradient-green-transparent($opacity, $deg: $_gdeg) {
+
+  @return linear-gradient($deg, rgba(74, 228, 173, $opacity), rgba(74, 214, 228, $opacity));
+
+}
+
+@mixin flex($dir: $_fdir, $align: $_falign, $just: $_fjust) {
+
+  display: flex;
+  @if $dir != null { flex-direction: $dir; }
+  @if $align != null { align-items: $align; }
+  @if $just != null { justify-content: $just; }
+
+}
+
+@mixin transition($time: $_ttime, $type: $_ttype, $props...) {
+
+  transition: __transition($time, $type, $props...);
+
+}
+
+@mixin _transition($props...) {
+
+  transition: __transition($_ttime, $_ttype, $props...);
+
+}
+
+@mixin gradient-text($color: $color-gradient-green) {
+
+  color: transparent;
+  background-image: $color;
+  -webkit-background-clip: text;
+  background-clip: text;
+
+}
+
+@mixin fix($index) {
+
+  position: fixed;
+  z-index: $index;
+
+}
+
+@mixin horizontal-padding($left, $right: null) {
+
+  @if $right == null { padding: 0 $left 0 $left; }
+  @else { padding: 0 $right 0 $left; }
+
+}
+
+@mixin vertical-padding($top, $bottom: null) {
+
+  @if $bottom == null { padding: $top 0 $top 0; }
+  @else { padding: $top 0 $bottom 0; }
+
+}
+
+@mixin horizontal-margin($left, $right: null) {
+
+  @if $right == null { margin: 0 $left 0 $left; }
+  @else { margin: 0 $right 0 $left; }
+
+}
+
+@mixin vertical-margin($top, $bottom: null) {
+
+  @if $bottom == null { margin: $top 0 $top 0; }
+  @else { margin: $top 0 $bottom 0; }
+
+}
+
+@mixin square($size) {
+
+  width: $size;
+  height: $size;
+
+}
+
+// Media Queries
+@mixin media-ie10 {
+
+  @media all and (-ms-high-contrast: none), (-ms-hight-contrast: active) {
+
+    @content;
+
+  }
+
+}
+
+// Helpers
+@function __transition($time, $type, $props...) {
+
+  $value: null;
+
+  @each $prop in $props {
+
+    @if $value == null {
+
+      $value: #{$prop} #{$time} #{$type};
+
+    }
+    @else {
+
+      $value: #{$value}, #{$prop} #{$time} #{$type};
+
+    }
+
+  }
+
+  @return $value;
+
+}

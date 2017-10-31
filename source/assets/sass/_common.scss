@@ -1,0 +1,320 @@
+@import 'dependencies';
+@import 'config';
+@import 'factory';
+
+html {
+
+  // With default browser font-size of 16px, this sets the font-size to 10px
+  // therefore, REMs can be calculated from px/10 while respecting user font-size settings
+  font-size: 62.5%;
+
+}
+
+body {
+
+  // margin: 0;
+  // padding: 0;
+  // overflow: hidden;
+  font-family: $font-family;
+  font-size: $font-size-text;
+
+  > header {
+
+    width: 100%;
+    @include flex(column, null, null);
+
+  }
+
+  > footer {
+
+    width: 100%;
+    height: 300px;
+    background-color: $color-black;
+    @include flex(column, stretch, null);
+    flex-wrap: wrap;
+    color: $color-light;
+
+    > .container {
+
+      @include flex(row, stretch, stretch);
+      flex-grow: 1;
+      width: 100%;
+
+      &.copyright {
+
+        @include flex(column);
+        align-self: flex-end;
+        text-align: center;
+        width: 100%;
+        max-height: 100px;
+        margin-bottom: 10px;
+
+        > .powered {
+
+          font-size: $font-size-sub;
+          margin-top: 10px;
+          letter-spacing: 5px;
+
+        }
+
+      }
+
+      > .half-container {
+
+        @include flex();
+        flex-grow: 1;
+        width: 50%;
+
+        > .social-buttons {
+
+          align-self: stretch;
+          @include horizontal-padding(10px);
+          @include flex();
+          flex-wrap: wrap;
+
+          > .social-button {
+
+            @include square(50px);
+            margin: 10px;
+            opacity: 0;
+            @include _transition(opacity, background-color);
+
+            > .social-icon {
+
+              @include square(100%);
+              fill: $color-light;
+              @include _transition(fill);
+
+              &:hover { fill: $color-green; }
+
+            }
+
+          }
+
+        }
+
+        > .footer-nav {
+
+          margin: 20px;
+          opacity: 0;
+          @include _transition(opacity);
+
+        }
+
+      }
+
+    }
+
+  }
+
+}
+
+.header { height: 600px; }
+
+a {
+
+  &,
+  &:visited,
+  &:active {
+
+    text-decoration: none;
+    color: $color-green;
+    @include _transition(color);
+
+  }
+
+  &:hover {
+
+    color: $color-green;
+    text-decoration: underline;
+
+  }
+
+}
+
+h1,
+header.h1 {
+
+  font-size: $font-size-header;
+  font-weight: bold;
+  @include gradient-text();
+
+  @include media-ie10 {
+
+    background: none;
+    color: $color-green;
+
+  }
+
+  &.light {
+
+    color: $color-light;
+    background-image: none;
+    -webkit-background-clip: none;
+    background-clip: none;
+
+  }
+
+}
+
+::selection {
+
+  background: $color-green;
+  color: $color-light;
+
+}
+
+.no-select {
+
+  user-select: none;
+
+}
+
+// @keyframes spin {
+//
+//   100% { transform: rotate(360deg); }
+//
+// }
+//
+// .loader {
+//
+//   @include square(128px);
+//   animation: spin 1s linear infinite;
+//
+//   &-container {
+//
+//     background: $color-gradient-green;
+//     @include square(100%);
+//     opacity: 1;
+//     @include fix(11);
+//     @include flex(null);
+//     @include _transition(opacity);
+//
+//   }
+//
+// }
+
+.top {
+
+  width: 100%;
+  @include fix(10);
+
+  &-gap { height: 80px; }
+
+  &-bar {
+
+    width: 100%;
+    height: 80px;
+    background-color: $color-black;
+    @include flex(row, null, space-between);
+
+  }
+
+}
+
+.blog {
+
+  &-identity {
+
+    height: 100%;
+    @include flex();
+    color: $color-light;
+    background-color: inherit;
+    @include horizontal-padding(20px);
+    margin-left: 30px;
+    @include _transition(background-color, color);
+
+    &:hover {
+
+      background-color: $color-gray;
+      color: $color-green;
+
+    }
+
+  }
+
+  &-title { font-size: $font-size-title; }
+
+  &-logo {
+
+    @include square(50px);
+    margin-right: 15px;
+    background-size: contain;
+
+  }
+
+}
+
+.nav {
+
+  &-bar {
+
+    height: 100%;
+    @include flex(row, null, null);
+    margin-right: 30px;
+
+    > .nav-button {
+
+      height: 100%;
+      @include horizontal-padding(20px);
+      @include flex(null);
+      background-color: inherit;
+      color: $color-light;
+      @include _transition(background-color, color);
+
+      &:hover {
+
+        background-color: $color-gray;
+        color: $color-green;
+
+      }
+
+      > .nav-label { font-size: $font-size-button; }
+
+    }
+
+  }
+
+}
+
+#nav-search {
+
+  cursor: pointer;
+
+  > .nav-label > svg > g > path {
+
+    fill: $color-light;
+    @include _transition(fill);
+
+  }
+
+  &:hover > svg > g > path { fill: $color-green; }
+
+}
+
+.search-bar {
+
+  @include flex($_fdir, $_falign, flex-end);
+  background-color: $color-search-bar;
+  height: 0px;
+  @include _transition(height);
+
+  > input {
+
+    margin-right: 30px;
+    padding: 15px;
+    font-family: $font-family;
+    font-size: $font-size-button;
+    min-width: 300px;
+    border: none;
+    caret-color: $color-green;
+    color: $color-green;
+    background-color: transparent;
+    outline: none;
+    height: 100%;
+    @include transition(.25s, $_ttype, opacity);
+    pointer-events: none;
+
+  }
+
+}

@@ -1,0 +1,46 @@
+// Variables live in this file
+// This is a partial file and should only be imported in common
+
+// Defaults
+$default-transition-time: .5s;
+$default-transition-type: ease;
+$default-gradient-degree: 90deg;
+$default-flex-direction:  row;
+$default-flex-alignment:  center;
+$default-flex-justify:    center;
+
+// Default Shorthands
+$_ttime:  $default-transition-time;
+$_ttype:  $default-transition-type;
+$_gdeg:   $default-gradient-degree;
+$_fdir:   $default-flex-direction;
+$_falign: $default-flex-alignment;
+$_fjust:  $default-flex-justify;
+
+// URLs
+$url-author-avatar: url('https://www.gravatar.com/avatar/d6605ebd3ab5459696ab6021d233429d?s=300');
+
+// Colors
+$color-green:           #4ae4ad;
+$color-black:           #0a0a0a;
+$color-gray:            #1b1b1b;
+$color-light-gray:      #a1a1a1;
+$color-light:           white;
+$color-button-gray:     #f4f4f4;
+$color-gradient-green:  linear-gradient($_gdeg, rgb(74, 228, 173), rgb(74, 214, 228));
+$color-search-bar:      rgba(0, 0, 0, 0.89);
+
+// Shadows
+$shadow-light: 0px 8px 20px rgba(0,0,0,.15);
+$shadow-rough: 0px 8px 30px rgba(0,0,0,.45);
+
+// Fonts (1rem = 10px)
+$font-family: 'Roboto Condensed', sans-serif;
+$font-size-sub:     1.8rem;
+$font-size-button:  2rem;
+$font-size-text:    2.4rem;
+$font-size-title:   3rem;
+$font-size-header:  6rem;
+$font-size-project-zoom-out:  1.9rem;
+$font-size-project-zoom-in:   2.2rem;
+$font-size-project-title:     2.8rem;
