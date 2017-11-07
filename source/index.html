@@ -9,47 +9,7 @@
     <meta property="og:url" content="http://blog.ramt.in/">
     <meta property="og:type" content="website">
     <link rel="icon" href="./assets/images/common/favicon.png">
-    <!--Above-the-fold CSS-->
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-      }
-      @-webkit-keyframes spin {
-        100% {
-          -webkit-transform: rotate(360deg);
-                  transform: rotate(360deg); } }
-
-      @keyframes spin {
-        100% {
-          -webkit-transform: rotate(360deg);
-                  transform: rotate(360deg); } }
-      .loader {
-        width: 128px;
-        height: 128px;
-        -webkit-animation: spin 1s linear infinite;
-                animation: spin 1s linear infinite; }
-        .loader-container {
-          background: -webkit-gradient(linear, left top, right top, from(#4ae4ad), to(#4ad6e4));
-          background: linear-gradient(90deg, #4ae4ad, #4ad6e4);
-          width: 100%;
-          height: 100%;
-          opacity: 1;
-          position: fixed;
-          z-index: 11;
-          display: -webkit-box;
-          display: -ms-flexbox;
-          display: flex;
-          -webkit-box-align: center;
-              -ms-flex-align: center;
-                  align-items: center;
-          -webkit-box-pack: center;
-              -ms-flex-pack: center;
-                  justify-content: center;
-          -webkit-transition: opacity 0.5s ease;
-          transition: opacity 0.5s ease; }
-    </style>
+    {{above-css}}
     <!--Load home.css after DOM is loaded-->
     <script>
       window.onload = function() {
@@ -70,8 +30,8 @@
   </head>
   <body>
     <div class="loader-container">
-      <svg class="loader" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
-        <path d="M270,14c0,7.7-6.3,14-14,14C130.1,28,28,130.1,28,256c0,7.7-6.3,14-14,14s-14-6.3-14-14C0,114.6,114.6,0,256,0 C263.7,0,270,6.3,270,14z" fill="#ffffff"/>
+      <svg class="loader" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;">
+        <path d="M270,14c0,7.7-6.3,14-14,14C130.1,28,28,130.1,28,256c0,7.7-6.3,14-14,14s-14-6.3-14-14C0,114.6,114.6,0,256,0 C263.7,0,270,6.3,270,14z"/>
       </svg>
     </div>
     <header>
@@ -84,6 +44,15 @@
             </div>
           </a>
           <nav class="nav-bar no-select">
+            <a class="nav-button mobile-only" onclick="ramtin.util.toggleMobileMenu();">
+              <div class="nav-label">
+                <svg class="menu-icon" viewBox="0 0 512 512">
+                  <rect class="menu-dot" x="218.5" y="72.5" width="75" height="75" rx="40" ry="50"/>
+                  <rect class="menu-dot" x="218.5" y="218.5" width="75" height="75" rx="40" ry="50"/>
+                  <rect class="menu-dot" x="218.5" y="364.5" width="75" height="75" rx="40" ry="50"/>
+                </svg>
+              </div>
+            </a>
             <a href="#" class="nav-button">
               <div class="nav-label">HOME</div>
             </a>
@@ -98,10 +67,8 @@
             </a>
             <a class="nav-button" id="nav-search" onclick="ramtin.util.toggleSearch();">
               <div class="nav-label">
-                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 250 250" style="enable-background:new 0 0 250 250;" xml:space="preserve" width="24px" height="24px">
-                  <g>
-                  	<path style="fill-rule:evenodd;clip-rule:evenodd;" d="M244.186,214.604l-54.379-54.378c-0.289-0.289-0.628-0.491-0.93-0.76   c10.7-16.231,16.945-35.66,16.945-56.554C205.822,46.075,159.747,0,102.911,0S0,46.075,0,102.911   c0,56.835,46.074,102.911,102.91,102.911c20.895,0,40.323-6.245,56.554-16.945c0.269,0.301,0.47,0.64,0.759,0.929l54.38,54.38   c8.169,8.168,21.413,8.168,29.583,0C252.354,236.017,252.354,222.773,244.186,214.604z M102.911,170.146   c-37.134,0-67.236-30.102-67.236-67.235c0-37.134,30.103-67.236,67.236-67.236c37.132,0,67.235,30.103,67.235,67.236   C170.146,140.044,140.043,170.146,102.911,170.146z" fill="white"/>
-                  </g>
+                <svg class="search-icon" version="1.1" x="0px" y="0px" viewBox="0 0 250 250" style="enable-background:new 0 0 250 250;">
+                  	<path style="fill-rule:evenodd;clip-rule:evenodd;" d="M244.186,214.604l-54.379-54.378c-0.289-0.289-0.628-0.491-0.93-0.76   c10.7-16.231,16.945-35.66,16.945-56.554C205.822,46.075,159.747,0,102.911,0S0,46.075,0,102.911   c0,56.835,46.074,102.911,102.91,102.911c20.895,0,40.323-6.245,56.554-16.945c0.269,0.301,0.47,0.64,0.759,0.929l54.38,54.38   c8.169,8.168,21.413,8.168,29.583,0C252.354,236.017,252.354,222.773,244.186,214.604z M102.911,170.146   c-37.134,0-67.236-30.102-67.236-67.235c0-37.134,30.103-67.236,67.236-67.236c37.132,0,67.235,30.103,67.235,67.236   C170.146,140.044,140.043,170.146,102.911,170.146z"/>
                 </svg>
               </div>
             </a>
@@ -111,6 +78,9 @@
           <input type="text" placeholder="Press enter to search..." spellcheck="true" style="opacity: 0;">
         </div>
       </div>
+      <nav class="mobile-only">
+
+      </nav>
       <div class="top-gap"></div>
       <div class="jarallax header" style="background-image: url('./assets/images/common/header-cover-backup.jpg');" data-speed="0.5" data-jarallax-video="https://youtu.be/ifExeQGaPsc">
         <div class="header-cover">
@@ -120,7 +90,7 @@
       </div>
     </header>
     <main>
-      <section class="block">
+      <section class="mobile-vertical block">
         <div id="avatar-border" class="author-avatar-border">
           <div id="avatar" class="author-avatar"></div>
         </div>

@@ -90,6 +90,46 @@
 
 }
 
+@mixin mobile {
+
+  @media only screen and (max-width: $breakpoint-max-mobile) {
+
+    @content;
+
+  }
+
+}
+
+@mixin not-mobile {
+
+  @media only screen and (min-width: $breakpoint-max-mobile + 1) {
+
+    @content;
+
+  }
+
+}
+
+@mixin tablet {
+
+  @media only screen and (max-width: $breakpoint-max-tablet) {
+
+    @content;
+
+  }
+
+}
+
+@mixin desktop {
+
+  @media only screen and (max-width: $breakpoint-max-desktop) {
+
+    @content;
+
+  }
+
+}
+
 // Helpers
 @function __transition($time, $type, $props...) {
 

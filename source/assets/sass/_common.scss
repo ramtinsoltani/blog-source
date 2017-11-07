@@ -12,9 +12,6 @@ html {
 
 body {
 
-  // margin: 0;
-  // padding: 0;
-  // overflow: hidden;
   font-family: $font-family;
   font-size: $font-size-text;
 
@@ -29,6 +26,7 @@ body {
 
     width: 100%;
     height: 300px;
+    overflow: hidden;
     background-color: $color-black;
     @include flex(column, stretch, null);
     flex-wrap: wrap;
@@ -170,30 +168,6 @@ header.h1 {
 
 }
 
-// @keyframes spin {
-//
-//   100% { transform: rotate(360deg); }
-//
-// }
-//
-// .loader {
-//
-//   @include square(128px);
-//   animation: spin 1s linear infinite;
-//
-//   &-container {
-//
-//     background: $color-gradient-green;
-//     @include square(100%);
-//     opacity: 1;
-//     @include fix(11);
-//     @include flex(null);
-//     @include _transition(opacity);
-//
-//   }
-//
-// }
-
 .top {
 
   width: 100%;
@@ -252,6 +226,8 @@ header.h1 {
     height: 100%;
     @include flex(row, null, null);
     margin-right: 30px;
+    align-items: flex-end;
+    flex-shrink: 1;
 
     > .nav-button {
 
@@ -261,6 +237,17 @@ header.h1 {
       background-color: inherit;
       color: $color-light;
       @include _transition(background-color, color);
+      cursor: pointer;
+      visibility: visible;
+
+      @include mobile {
+
+        visibility: hidden;
+        margin: 0px;
+        padding: 0px;
+        width: 0px;
+
+      }
 
       &:hover {
 
@@ -269,7 +256,47 @@ header.h1 {
 
       }
 
-      > .nav-label { font-size: $font-size-button; }
+      &.mobile-only {
+
+        width: 0px;
+        padding: 0px;
+        visibility: hidden;
+
+        @include mobile {
+
+          visibility: visible;
+          @include horizontal-padding(20px);
+          width: auto;
+
+        }
+
+      }
+
+      > .nav-label {
+
+        font-size: $font-size-button;
+
+        > .search-icon {
+
+          @include square(24px);
+          fill: $color-light;
+
+        }
+
+        > .menu-icon {
+
+          @include square(40px);
+          fill: $color-light;
+
+          > .menu-dot {
+
+            @include _transition(width, x);
+
+          }
+
+        }
+
+      }
 
     }
 
@@ -289,6 +316,33 @@ header.h1 {
   }
 
   &:hover > svg > g > path { fill: $color-green; }
+
+}
+
+nav.mobile-only {
+
+  visibility: hidden;
+  width: 100%;
+  height: 0px;
+  opacity: 0;
+  background: color-gradient-green-transparent(.75);
+  @include _transition(opacity, visibility);
+  @include fix(9);
+
+  &.visible {
+
+    visibility: visible;
+    height: 100%;
+    opacity: 1;
+
+    @include not-mobile {
+
+      visibility: hidden;
+      height: 0px;
+
+    }
+
+  }
 
 }
 

@@ -65,6 +65,30 @@ var Ramtin = function() {
 
     },
 
+    toggleMobileMenu: function() {
+
+      var dots = $('.menu-dot');
+      var nav = $('nav.mobile-only').get(0);
+      var hamburger = {
+        width: 410,
+        x: 51
+      };
+      var dotsMenu = {
+        width: 75,
+        x: 218.5
+      }
+
+      dots.each(function(index, dot) {
+
+        $(dot).attr('width', nav.classList.contains('visible') ? dotsMenu.width : hamburger.width );
+        $(dot).attr('x', nav.classList.contains('visible') ? dotsMenu.x : hamburger.x);
+
+      });
+
+      nav.classList.contains('visible') ? nav.classList.remove('visible') : nav.classList.add('visible');
+
+    },
+
     animations: {
 
       chain: function(selector, chainDelay, animation, args) {

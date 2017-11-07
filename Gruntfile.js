@@ -1,6 +1,16 @@
 module.exports = function(grunt) {
 
   grunt.initConfig({
+    clean: {
+      stage: ['staging'],
+      prod: ['build/*', '!build/package.json', '!build/package-lock.json', '!build/.gitignore', '!build/.git'],
+      'above-stage': [
+        'staging/assets/css/above-the-fold.css',
+        'staging/assets/css/above-the-fold.css.map',
+        'staging/assets/css/post-maps/above-the-fold.css.map'
+      ],
+      'above-prod': ['build/assets/css/above-the-fold.css']
+    },
     postcss: {
       options: {
         processors: [
@@ -42,7 +52,7 @@ module.exports = function(grunt) {
     watch: {
       scripts: {
         files: ['source/**/*.*'],
-        tasks: ['stage'],
+        tasks: ['sass:stage', 'postcss:stage', 'uglify:stage', 'copy:stage', 'htmlmin:stage', 'copy:above-stage', 'clean:above-stage'],
         options: {
           spawn: false
         }
@@ -77,6 +87,30 @@ module.exports = function(grunt) {
           {expand: true, cwd: 'source', src: './assets/lib/3rd/**', dest: 'build/'},
           {src: 'source/CNAME', dest: 'build/CNAME'}
         ]
+      },
+      'above-stage': {
+        files: [
+          {expand: true, cwd: 'staging', src: './*.html', dest: 'staging/'}
+        ],
+        options: {
+          process: function(content) {
+            const fs = require('fs');
+            let above = fs.readFileSync('./staging/assets/css/above-the-fold.css', 'utf-8');
+            return content.replace('{{above-css}}', `<style>${above}</style>`);
+          }
+        }
+      },
+      'above-prod': {
+        files: [
+          {expand: true, cwd: 'build', src: './*.html', dest: 'build/'}
+        ],
+        options: {
+          process: function(content) {
+            const fs = require('fs');
+            let above = fs.readFileSync('./build/assets/css/above-the-fold.css', 'utf-8');
+            return content.replace('{{above-css}}', `<style>${above}</style>`);
+          }
+        }
       }
     },
     htmlmin: {
@@ -97,6 +131,7 @@ module.exports = function(grunt) {
     }
   });
 
+  grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-postcss');
@@ -104,7 +139,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
 
-  grunt.registerTask('stage', ['sass:stage', 'postcss:stage', 'uglify:stage', 'copy:stage', 'htmlmin:stage']);
-  grunt.registerTask('build', ['sass:prod', 'postcss:prod', 'uglify:prod', 'copy:prod', 'htmlmin:prod']);
+  grunt.registerTask('stage', ['clean:stage', 'sass:stage', 'postcss:stage', 'uglify:stage', 'copy:stage', 'htmlmin:stage', 'copy:above-stage', 'clean:above-stage']);
+  grunt.registerTask('build', ['clean:prod', 'sass:prod', 'postcss:prod', 'uglify:prod', 'copy:prod', 'htmlmin:prod', 'copy:above-prod', 'clean:above-prod']);
 
 };

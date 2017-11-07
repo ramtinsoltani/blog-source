@@ -60,6 +60,16 @@ section.block {
 
   &.vertical { @include flex(column, null, null); }
 
+  &.mobile-vertical {
+
+    @include mobile {
+
+      @include flex(column, null, null);
+
+    }
+
+  }
+
   &.gradient { background: $color-gradient-green; }
 
 }
@@ -94,8 +104,8 @@ section.block {
 
     @include flex(column, null, null);
     @include _transition(opacity);
+    @include horizontal-margin(50px);
     opacity: 0;
-    margin-left: 50px;
 
   }
 
@@ -124,6 +134,14 @@ section.block {
     max-width: 1000px;
     margin-top: 50px;
 
+    @include mobile {
+
+      flex-direction: column;
+      flex-wrap: wrap;
+      width: 90%;
+
+    }
+
     > .left,
     > .right {
 
@@ -132,6 +150,16 @@ section.block {
       z-index: 1;
       opacity: 0;
       font-size: $font-size-project-zoom-out;
+
+      @include mobile {
+
+        height: 450px;
+        width: 100%;
+        z-index: auto;
+        @include vertical-margin(20px);
+        font-size: $font-size-project-zoom-in;
+
+      }
 
     }
     > .center {
@@ -143,6 +171,14 @@ section.block {
       @include horizontal-margin(-50px);
       opacity: 0;
       font-size: $font-size-project-zoom-in;
+
+      @include mobile {
+
+        width: 100%;
+        z-index: auto;
+        @include vertical-margin(20px);
+
+      }
 
     }
 
@@ -157,6 +193,13 @@ section.block {
       height: 450px;
       font-size: $font-size-project-zoom-in;
       box-shadow: $shadow-rough;
+
+      @include mobile {
+
+        width: 100%;
+        z-index: auto;
+
+      }
 
     }
 
